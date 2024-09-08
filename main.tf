@@ -10,13 +10,15 @@ terraform {
 }
 
 provider "aws" {
-  region  = "us-east-2"
+  region  = "us-east-1"
 }
+
+
 
 resource "aws_launch_template" "webpageLT" {
     name = "webpage"
     image_id = "ami-066784287e358dad1"
-    instance type = "t2.micro"
+    instance_type = "t2.micro"
 
     //create VPCs to make sure it replicable, define the VPCs in ASG
 
@@ -31,7 +33,7 @@ resource "aws_launch_template" "webpageLT" {
 resource "aws_autoscaling_group" "webpageASG" {
     name = "webpageASG"
 
-    //availability zone = []
+    //add a list of subnet defined in the vpc file.
 
     desired_capacity = 2
     max_size = 4
@@ -42,3 +44,4 @@ resource "aws_autoscaling_group" "webpageASG" {
         aws_launch_template.webpageLT.id
     }
 }
+

@@ -12,3 +12,7 @@ terraform {
 provider "aws" {
   region  = "us-east-1"
 }
+
+output "webpage-dns" {
+  value = aws_cloudfront_distribution.webpage_cf.domain_name
+}

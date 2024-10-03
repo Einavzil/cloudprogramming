@@ -1,8 +1,12 @@
-# cloudprogramming
+# Cloud Programming Course
 
 ## Einav Zilka
 
-To run, aws secrets are needed. They can be set with the following commands:
+## How to run
+
+### AWS Credentials
+
+Edit the following commands with your aws secrets to run:
 
 Windows
 
@@ -18,5 +22,11 @@ export AWS_ACCESS_KEY_ID {your_access_key_id}
 export AWS_SECRET_ACCESS_KEY {your_secret_key}
 ```
 
-When "terraform apply" is complete, the cloudfront domain address will be printed in the terminal.
+### Apply
+
+```
+terraform apply
+```
+
+When **_"terraform apply"_** is complete, the cloudfront domain address will be printed in the terminal.
 Keep in mind that it might take a few minutes for the resources to initialize before accessing the web page.

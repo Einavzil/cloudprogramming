@@ -11,11 +11,12 @@ resource "aws_lb_target_group" "asg-target-group" {
     path = "/"
     protocol = "HTTP"
     timeout = 5
-    healthy_threshold = 3
-    unhealthy_threshold = 3
+    healthy_threshold = 5
+    unhealthy_threshold = 5
   }
 }
 
+#creation of appliation load balancer, external
 resource "aws_lb" "webpage-lb" {
   name               = "webpage-lb"
   internal           = false
@@ -24,6 +25,7 @@ resource "aws_lb" "webpage-lb" {
   subnets            = [aws_subnet.public_subnet_a.id, aws_subnet.public_subnet_b.id]
 }
 
+#listener on port 80 for traffic from cloudfront, forward to the target group (instances)
 resource "aws_lb_listener" "lb_listener" {
   load_balancer_arn = aws_lb.webpage-lb.arn
   port              = "80"
